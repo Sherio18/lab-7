@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Collectible : MonoBehaviour
+{
+    // Coin sound effects
+    public AudioClip coin1;
+    public AudioClip coin2;
+
+
+    
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+           
+            PlayerStats.score++;
+
+           
+            AudioManager.Instance.PlayRandomSFX(coin1, coin2);
+
+            
+            Debug.Log("Score: " + PlayerStats.score);
+
+            
+            Destroy(gameObject);
+        }
+    }
+}
